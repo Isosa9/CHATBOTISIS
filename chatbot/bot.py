@@ -1,6 +1,9 @@
+
+from ia import consultar_ollama
 import requests
 from telegram import Update
 from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, filters, ContextTypes
+from dotenv import load_dotenv
 
 TOKEN = "7919086667:AAGidlGfy71eI3aVQhhkTX_R0G4ptjoLolk"
 OLLAMA_URL = "http://localhost:11434/api/generate"
@@ -9,7 +12,7 @@ OLLAMA_URL = "http://localhost:11434/api/generate"
 def consultar_ollama(mensaje_usuario):
     prompt = f"Eres un asistente para una agrocomercial. Responde con claridad y cordialidad.\nUsuario: {mensaje_usuario}\nChatbot:"
     datos = {
-        "model": "gemma:2b",  # ← aquí usamos phi3
+        "model": "gemma:2b",  
         "prompt": prompt,
         "stream": False
     }
@@ -19,7 +22,9 @@ def consultar_ollama(mensaje_usuario):
     else:
         return "Lo siento, no puedo responder en este momento."
 
+
 # comando /start
+
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("Hola, soy el asistente de Agrocomercial M Y M. Es un gusto que estes aqui.🤖. ¿En qué te puedo ayudar?")
 

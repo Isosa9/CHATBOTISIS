@@ -3,7 +3,7 @@ from twilio.twiml.messaging_response import MessagingResponse
 
 app = FastAPI()
 
-@app.post("/whatsapp")
+@app.post("/telegram")
 async def whatsapp_webhook(request: Request):
     form = await request.form()
     incoming_msg = form.get("Body")
